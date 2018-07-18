@@ -1,0 +1,82 @@
+MECS_NAICS_dummies,MECS_NAICS_desc,MECS_NAICS
+311009,Food All Other,311
+311209,Grain and Oilseed Milling all other,3112
+311221,Wet Corn Milling,311221
+31131,Sugar Manufacturing,31131
+3114,Fruit and Vegetable Preserving and Specialty Foods,3114
+3115,Dairy Products,3115
+3116,Animal Slaughtering and Processing,3116
+3121,Beverages,3121
+3122,Tobacco,3122
+313,Textile Mills,313
+314,Textile Product Mills,314
+315,Apparel,315
+316,Leather and Allied Products,316
+321009,Wood Products All Others,321
+321113,Sawmills,321113
+321209,"Veneer, Plywood, and Engineered Woods All Others",3212
+321219,Reconstituted Wood Products,321219
+3219,Other Wood Products,3219
+322009,Paper All Others,322
+322110,Pulp Mills,322110
+322121,"Paper Mills, except Newsprint",322121
+322122,Newsprint Mills,322122
+322130,Paperboard Mills,322130
+323,Printing and Related Support,323
+324009,Petroleum and Coal Products All Others,324
+324110,Petroleum Refineries,324110
+324121,Asphalt Paving Mixture and Block,324121
+324199,Other Petroleum and Coal Products,324199
+325009,Chemicals All Others,325
+325110,Petrochemicals,325110
+325120,Industrial Gases,325120
+325181,Alkalies and Chlorine,325181
+325182,Carbon Black,325182
+325188,Other Basic Inorganic Chemicals,325188
+325192,Cyclic Crudes and Intermediates,325192
+325193,Ethyl Alcohol,325193
+325199,Other Basic Organic Chemicals,325199
+325211,Plastics Materials and Resins,325211
+325212,Synthetic Rubber,325212
+325222,Noncellulosic Organic Fibers,325222
+325311,Nitrogenous Fertilizers,325311
+325312,Phosphatic Fertilizers,325312
+325409,Pharmaceuticals and Medicines All Others,3254
+325412,Pharmaceutical Preparation,325412
+325992,"Photographic Film, Paper, Plate, and Chemicals",325992
+326,Plastics and Rubber Products,326
+327009,Nonmetallic Mineral Products All Others,327
+327121,Brick and Structural Clay Tile,327121
+327211,Flat Glass,327211
+327212,Other Pressed and Blown Glass and Glassware,327212
+327213,Glass Containers,327213
+327215,Glass Products from Purchased Glass,327215
+327310,Cements,327310
+327410,Lime,327410
+327420,Gypsum,327420
+327993,Mineral Wool,327993
+331111,Iron and Steel Mills,331111
+331112,Electrometallurgical Ferroalloy Products,331112
+3312,Steel Products from Purchased Steel,3312
+331309,Alumina and Aluminum All Others,3313
+331314,Secondary Smelting and Alloying of Aluminum,331314
+331315,"Aluminum Sheet, Plate and Foils",331315
+331316,Aluminum Extruded Products,331316
+331409,"Nonferrous Metals, except Aluminum All Others",3314
+331419,"Primary Smelting and Refining of Nonferrous Metals, except Copper and Aluminum",331419
+331509,Foundries All Others,3315
+331511,Iron Foundries,331511
+331521,Aluminum Die-Casting Foundries,331521
+331524,"Aluminum Foundries, except Die-Casting",331524
+332,Fabricated Metal Products,332
+333,Machinery,333
+334009,Computer and Electronic Products All Others,334
+334413,Semiconductors and Related Devices,334413
+335,"Electrical Equip., Appliances, and Components",335
+336009,Transportation Equipment All Others,336
+336111,Automobiles,336111
+336112,Light Trucks and Utility Vehicles,336112
+336409,Aerospace Product and Parts All Others,3364
+336411,Aircraft,336411
+337,Furniture and Related Products,337
+339,Miscellaneous,339

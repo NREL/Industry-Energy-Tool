@@ -1,0 +1,36 @@
+EIA_short,EIA_long,GHGRP
+SUN,Solar,NA
+AB,Agricultural By-Products,Agricultural Byproducts
+ANT,Anthracite Coal,Anthracite
+BFG,Blast Furnace Gas,Blast Furnace Gas
+BIT,Bituminous Coal,Bituminous
+BLQ,Black Liquor,Wood and Wood Residuals
+DFO,"Distillate Fuel Oil. Including diesel, No. 1, No. 2, and No. 4 fuel oils.",Distillate Fuel Oil No. 4
+JF,Jet Fuel,Kerosene-Type Jet Fuel
+KER,Kerosene,Kerosene
+LFG,Landfill Gas,Landfill Gas
+LIG,Lignite Coal,Lignite
+MSB,Biogenic Municipal Solid Waste,Municipal Solid Waste
+MSN,Non-biogenic Municipal Solid Waste,Municipal Solid Waste
+NG,Natural Gas,Natural Gas (Weighted U.S. Average)
+OBG,"Other Biomass Gas. Including digester gas, methane, and other biomass gases.",Other Biomass Gases
+OBL,Other Biomass Liquids,Ethanol
+OBS,Other Biomass Solids,Wood and Wood Residuals (dry basis)
+OG,Other Gas,Fuel Gas
+OTH,Other Fuel,unkown
+PC,Petroleum Coke,Petroleum Coke
+PG,Gaseous Propane,Propane
+PUR,Purchased Steam,NA
+RC,Refined Coal,unkown
+RFO,Residual Fuel Oil. Including No. 5 & 6 fuel oils and bunker C fuel oil.,Residual Fuel Oil No. 6
+SC,"Coal-based Synfuel. Including briquettes, pellets, or extrusions, which are formed by binding materials or processes that recycle materials.",unkown
+SLW,Sludge Waste,Solid Byproducts
+SUB,Subbituminous Coal,Subbituminous
+TDF,Tire-derived Fuels,Tires
+WAT,"Water at a Conventional Hydroelectric Turbine and water used in Wave Buoy Hydrokinetic Technology, current Hydrokinetic Technology, Tidal Hydrokinetic Technology, and Pumping Energy for Reversible (Pumped Storage) Hydroelectric Turbines.",NA
+WC,"Waste/Other Coal. Including anthracite culm, bituminous gob, fine coal, lignite waste, waste coal.",Mixed (Industrial sector)
+WDL,"Wood Waste Liquids, excluding Black Liquor. Including red liquor, sludge wood, spent sulfite liquor, and other wood-based liquids.",Wood and Wood Residuals
+WDS,"Wood/Wood Waste Solids. Including paper pellets, railroad ties, utility polies, wood chips, bark, and other wood waste solids.",Wood and Wood Residuals (dry basis)
+WH,Waste Heat not directly attributed to a fuel source,NA
+WND,Wind,NA
+WO,"Waste/Other Oil. Including crude oil, liquid butane, liquid propane, naphtha, oil waste, re-refined moto oil, sludge oil, tar oil, or other petroleum-based liquid wastes.",unkown

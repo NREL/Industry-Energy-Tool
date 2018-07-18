@@ -1,0 +1,269 @@
+Fuel_Type,CO2_kgCO2_per_mmBtu,CH4_gCH4_per_mmBtu
+Anthracite,103.69,11
+Bituminous,93.28,11
+Subbituminous,97.17,11
+Lignite,97.72,11
+Coal Coke,113.67,11
+Mixed (Commercial sector),94.27,11
+Mixed (Industrial coking),93.9,11
+Mixed (Industrial sector),94.67,11
+Mixed (Electric Power sector),95.52,11
+Natural Gas (Weighted U.S. Average),53.06,1
+Distillate Fuel Oil No. 1,73.25,3
+Distillate Fuel Oil No. 2,73.96,3
+Distillate Fuel Oil No. 4,75.04,3
+Residual Fuel Oil No. 5,72.93,3
+Residual Fuel Oil No. 6,75.1,3
+Used Oil,74,3
+Kerosene,75.2,3
+Liquefied petroleum gases (LPG),61.71,3
+Propane,62.87,3
+Propylene,67.77,3
+Ethane,59.6,3
+Ethanol,68.44,3
+Ethylene,65.96,3
+Isobutane,64.94,3
+Isobutylene,68.86,3
+Butane,64.77,3
+Butylene,68.72,3
+Naphtha (<401 deg F),68.02,3
+Natural Gasoline,66.88,3
+Other Oil (>401 deg F),76.22,3
+Pentanes Plus,70.02,3
+Petrochemical Feedstocks,71.02,3
+Petroleum Coke,102.41,3
+Special Naphtha,72.34,3
+Unfinished Oils,74.54,3
+Heavy Gas Oils,74.92,3
+Lubricants,74.27,3
+Motor Gasoline,70.22,3
+Aviation Gasoline,69.25,3
+Kerosene-Type Jet Fuel,72.22,3
+Asphalt and Road Oil,75.36,3
+Crude Oil,74.54,3
+Municipal Solid Waste,90.7,32
+Tires,85.97,32
+Plastics,75,32
+Blast Furnace Gas,274.32,0.022
+Coke Oven Gas,46.85,0.48
+Propane Gas,61.46,0.022
+Fuel Gas,59,3
+Wood and Wood Residuals (dry basis),93.8,7.2
+Agricultural Byproducts,118.17,32
+Peat,111.84,32
+Solid Byproducts,105.51,32
+Landfill Gas,52.07,3.2
+Other Biomass Gases,52.07,3.2
+Biomass Ethanol,68.44,1.1
+Biodiesel,73.84,1.1
+Rendered Animal Fat,71.06,1.1
+Vegetable Oil,81.55,1.1
+Biogas (Captured methane),52.07,1
+Wood and Wood Residuals,93.8,7.2
+Coke,113.67,11
+Ethanol (100%),68.44,3
+Biodiesel (100%),73.84,1.1
+CFU MD Fuel Gas,59,3
+4UF Fuel Gas,59,3
+SRUMD Fuel Gas,59,3
+HCC3 NG/OG Blend A,59,3
+HCC3 NG/OG A and B,59,3
+HCC-3A NG/OG A and B,59,3
+HCC3A NG/OG Blend A,59,3
+FurnGas,59,3
+FurnGas,59,3
+NOx Red. Agent,75,32
+Process Gas,59,3
+Ethylene Unit Tail Gas,65.96,3
+Other Gaseous Fuel,59,3
+Natural and Process Gas Blend,59,3
+OCCrejects,93.8,7.2
+VPS-2 Waste Gas,59,3
+VPS-1 Waste Gas,59,3
+H-OIL Waste Gas,59,3
+Butane (gaseous),64.77,3
+Vacuum Tail Gas,59,3
+Light Straight Run Gasoline,70.22,3
+Other Gaseous Fuel,59,3
+KATT,68,3
+KATT Fuel,68,3
+Blend (solid),94.67,11
+Bituminous Coal and Coke Blend,94.67,11
+HYD-01,59,3
+Refinery Fuel Gas 1,59,3
+Refinery Fuel Gas 2,59,3
+Abatement Gas,59,3
+Heavy Residue,102.41,3
+Oilfield Gas,59,3
+Tail Gas,59,3
+Vacuum Gas,59,3
+OFG,59,3
+Refinery Fuel Gas,59,3
+PSA Gas,59,3
+Combined Purge Gas and Cold Box Fuel,59,3
+Refinery Fuel Gas 662701,59,3
+Refinery Fuel Gas 661703,59,3
+Ethylene off-gas,59,3
+Other Gaseous Fuel,59,3
+vent gas (Oxo Propane Recycle),59,3
+Oxo Propane Recycle,59,3
+WGA,59,3
+LFG,52.07,3.2
+Old Corrugated Container Rejects,93.8,7.2
+OCC Rejects,93.8,7.2
+Waste 1,68,3
+Waste 2,68,3
+Reactor offgas,59,3
+Corn Syrup from Ethanol Production,118.17,32
+PSA Off-gas,59,3
+FXG,59,3
+LOP-RFG,59,3
+CF-RFG,59,3
+Wastewater Treatment Plant Sludge,105.51,32
+LSR,68,3
+Sweet Fuel Gas,59,3
+Railroad Ties,105.51,32
+Tire fluff,85.97,32
+Tire chips,85.97,32
+RDF,85.97,32
+Mixture (Bituminous & Subbituminous Coal),94.67,11
+Blend (bituminous/subituminous),94.67,11
+Mixed Gas (NG + MAP),59,3
+Process Off-gas,59,3
+Process OffGas,59,3
+OffGas,59,3
+Other - Off Gas,59,3
+Off Gas (Other),59,3
+Blend (solid),94.67,11
+70/30 Coal/Coke Blend,94.67,11
+70/30 Coal/Pet Coke Blend,94.67,11
+Carpet Fines,75,32
+Processed Oily Waste,74,3
+Methane Fuel Gas,59,3
+Diesel fuel,73.96,3
+No.6 oil & Used Oil Blend,75.1,3
+No6 Oil & Used Oil Blend,75.1,3
+No6 Fuel Oil Blend,75.1,3
+No.6 Oil & Used Oil Blend,75.1,3
+Other Gaseous Fuel,59,3
+Refinery Fuel/ Bullet Gas,59,3
+P-300 Liquid Bottoms,75.1,3
+Diesel #2  ultra low sulfur,73.96,3
+Syngas,59,3
+Coal Blend,94.67,11
+#2 Diesel,73.96,3
+Off Spec Jet A (Tier 3),75.2,3
+Lignite Activation,97.72,11
+Mixed Fuel Gas,59,3
+Biogenic Process Derived Fuel,68.44,1.1
+Biogenic Process Derived Fuel (PDF),68.44,1.1
+Biogenic Process Derived Fuel (Glidfuel),68.44,1.1
+Process Gas,59,3
+Condensate Tank Vapors,59,3
+Subbitumious,97.17,11
+Blend (liquid),75.1,3
+Blend (gas),59,3
+Process Gas,59,3
+Process Gas Only,59,3
+diesel,73.96,3
+Mixed Gas (NG + MAP),59,3
+Hydrogen Fuel Gas,59,3
+CRU MD Fuel Gas,59,3
+Remediation - Thermal Oxidizer,59,3
+CFU MD Fuel Gas,59,3
+Refinery Produced Gas,59,3
+refinery gas,59,3
+Blended Fuel Oil,75.1,3
+Other (gas),59,3
+SNG,59,3
+Tar oil,74.54,3
+Tar Oil,74.54,3
+Naphtha/phenol,68.02,3
+Medium BTU,59,3
+MBTU,59,3
+CO2,59,3
+Fuel Gas - UFU/DDU,59,3
+Fuel Gas - V-917,59,3
+Fuel Gas - SRU,59,3
+Mixed Fuel Gas,59,3
+Other Gaseous Fuel,59,3
+Oxo Propane Recycle,59,3
+Process Gas Only,59,3
+carbon monoxide,59,3
+vent gas (Oxo Propane Recycle),59,3
+Land Fill Gas,52.07,3.2
+Fuel gas,59,3
+Raw Hydrogen,59,3
+Raw Hydrogen Gas,59,3
+LPG,61.71,3
+Hydrogen,59,3
+Process,59,3
+CO from scrubber off gas,59,3
+Carbon Monoxide,59,3
+Carbon monoxide,59,3
+HCC4 Offgas,59,3
+Anthracite Culm,103.69,11
+Anthracite Culm ,103.69,11
+Engineered Fuel Pellets,93.8,7.2
+Engineered Pellet Fuel,93.8,7.2
+Soddard Solvent A,68.02,3
+Stoddard Solvent,68.02,3
+CO2 gas,59,3
+Medium BTU gas,59,3
+Vacuum,74.54,3
+Tailgas,59,3
+VRU Sponge Oil,74.54,3
+Carbon Monoxide-P4P,59,3
+Activation (carbon),94.67,11
+Regeneration (carbon),94.67,11
+acetylene,72.34,3
+Combined Purge and Cold Box Fuel,72.34,3
+Short Fiber,105.51,32
+Waste Bituminous Coal,94.67,11
+Course Ore,94.67,11
+Produced (Associated) Gas,59,3
+Field Gas,59,3
+PSA Reject,72.34,3
+Blend,72.34,3
+PDO column bottoms,72.34,3
+Biogeninc Process Derived Fuel (PDF),105.51,32
+Waste Supplemental Fuel,72.34,3
+waste anthracite culm,103.69,11
+Waste Coal Refuse,94.67,11
+70/30 Coal Pet Coke Blend,94.67,11
+Soil Oil,74,3
+Raw landfill gas and processed landfill gas,52.07,3.2
+Raw landfill gas and waste gas,52.07,3.2
+Jet Fuel/Biofuel,75.2,3
+Carbon Electrode,94.67,11
+HYDROGEN,59,3
+Wood Oil,81.55,1.1
+Methanator,59,3
+AOG,59,3
+Tank16_Waste,68.02,3
+Waste_EDA2,68.02,3
+Waste_EDA1,68.02,3
+Acetone,68.02,3
+Terminal - Thermal Oxidizer,59,3
+Hyrdogen Rich Fuel Gas,59,3
+Fuel Gas - SRU ,59,3
+SRU Fuel Gas,59,3
+Vacuum Overhead,59,3
+Butamer Stabilizer,59,3
+PSA Tail Gas,59,3
+Light Straight Run,74.54,3
+RGAS,59,3
+OCCRejects,93.8,7.2
+Heavy Residue ,72.34,3
+Engineered Fuel,93.8,7.2
+"Wood, wood oil, and wood pellets",93.8,7.2
+Wax,72.34,3
+"Wax (Blend, Liquid)",72.34,3
+Blend (Liquid),68.02,3
+Natural gas/off-gas blend,59,3
+Sweet Gas Return,59,3
+Blended Fuel,74,3
+Scrap Fat (from W-4 Tank),71.06,1.1
+Fatty Acid Pitch (from W-6 Tank),105.51,32
+Nitrile Pitch (from W-3 Tank),105.51,32
+Sweet Gas  Return,59,3
