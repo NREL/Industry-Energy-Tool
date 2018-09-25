@@ -1,5 +1,3 @@
-syntax "markdown" "\.md$" "\.markdown$"
-
 ## Comparing IET Foundational Data
 IET county-level data are built on estimates of energy use calculated 
 from facility-level greenhouse gas emissions data. The most 
