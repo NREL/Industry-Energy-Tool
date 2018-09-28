@@ -9,23 +9,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-file_2014 = "C:\\Users\\cmcmilla\\Downloads\\EIA\\MECS\\2014\\table3_2.xlsx"
-# file_2010 = "C:\\Users\\cmcmilla\\Downloads\\EIA\\MECS\\MECS2010_Table3_2.xls"
+file_2014 = "table3_2.xlsx"
+# file_2010 = "MECS2010_Table3_2.xls"
 
-econ_file_2014 = \
-    "C:\\Users\\cmcmilla\\Downloads\\EIA\\MECS\\2014\\table6_3.xlsx"
-# econ_file_2010 = \
-#     "C:\\Users\\cmcmilla\\Downloads\\EIA\\MECS\\2010_UsebyEcon_Table6_3.xls"
+econ_file_2014 = "table6_3.xlsx"
+# econ_file_2010 = 2010_UsebyEcon_Table6_3.xls"
 
 county_file = "Y:\\6A20\\Public\\ICET\\Data for calculations\\" + \
     "Data foundation\\" + \
         "County_IndustryDataFoundation_2014_update_20170910-0116.csv"
-        
-fips_mecs_file = "Y:\\6A20\\Public\\ICET\\Data for calculations\\" + \
-    "Data foundation\\" + \
-        "US_FIPS_Codes.csv"
-        
 
+fips_mecs_file = "US_FIPS_Codes.csv"
 
 def import_mecs(mecs_file, year):
     """
@@ -37,8 +31,8 @@ def import_mecs(mecs_file, year):
 
     naics_update = pd.read_excel(
         "Y:\\6A20\\Public\\ICET\\Data for calculations\\" +\
-        "Data foundation\\2007_to_2012_NAICS.xls", sheetname=0, skiprows=[0, 1],
-        names=['2007 NAICS Code', '2012 NAICS Code'], parse_cols=[0, 2]
+        "Data foundation\\2007_to_2012_NAICS.xls", sheet_name=0, skiprows=[0, 1],
+        names=['2007 NAICS Code', '2012 NAICS Code'], usecols=[0, 2]
         )
 
     naics_update = dict(naics_update.values)
@@ -63,7 +57,7 @@ def import_mecs(mecs_file, year):
             'and Breeze': 'Coke_and_breeze', 'Other(f)': 'Other'
             }
 
-    mecs = pd.read_excel(mecs_file, sheetname=0, header=h_row)
+    mecs = pd.read_excel(mecs_file, sheet_name=0, header=h_row)
 
     mecs.rename(columns=cols_renamed, inplace=True)
 
@@ -78,14 +72,15 @@ def import_mecs(mecs_file, year):
 
     mecs.loc[:, 'NAICS'] = mecs.NAICS.apply(lambda x: int(x))
 
-    mecs.replace(to_replace={'*': None, 'Q': None, 'W': None}, inplace=True)
+    mecs.replace(to_replace={'*': np.nan, 'Q': np.nan, 'W': np.nan},
+        inplace=True)
 
     # Need to convert 2007 NAICS used for MECS 2010 to 2012 NAICS
     if year == 2010:
 
         update_index = \
             mecs[mecs.NAICS.apply(lambda x: len(str(x)))==6].index
-    
+
         mecs.loc[update_index, 'NAICS'] = \
             mecs.loc[update_index, 'NAICS'].map(lambda x: naics_update[x])
 
@@ -108,7 +103,7 @@ def draw_pcolor_plots(df, county_nformatted, comp_type, save_dir):
     """
 
     plot_df = pd.DataFrame(df, copy=True)
-    
+
     plot_df.replace({np.inf: 0, np.nan:0}, inplace=True)
 
     # Set all changes above 200% (including np.inf values) to 200% to help with
@@ -116,18 +111,18 @@ def draw_pcolor_plots(df, county_nformatted, comp_type, save_dir):
     if comp_type == '%':
 #        plot_df.replace(to_replace={np.inf: 2}, inplace=True)
 #        plot_df[plot_df > 2] = 2
-        cb_label = "Difference from 2014 MECS (1%)"
-    
+        cb_label = "Difference from 2014 MECS (%)"
+
     else:
         cb_label = "Difference from 2014 MECS (TBtu)"
 
-    for r in ['Total United States', 'Midwest Census Region', 
+    for r in ['Total United States', 'Midwest Census Region',
         'West Census Region','Northeast Census Region', 'South Census Region']:
-            
+
         naics_ticks = plot_df.loc[r].index.values
-  
+
         # Create masked array to address NaN values
-        # mask2 is an array where county_perc_diff == np.nan & 
+        # mask2 is an array where county_perc_diff == np.nan &
         # county_nformatted > 0
         mask2 = np.array(
             df.loc[r].isnull() & np.array(county_nformatted.loc[r] > 0)
@@ -169,11 +164,11 @@ def draw_pcolor_plots(df, county_nformatted, comp_type, save_dir):
 county_2014 = pd.read_csv(county_file, low_memory=False)
 
 county_2014 = pd.DataFrame(
-    county_2014[county_2014.subsector.apply(lambda x: x in [31, 32, 33])], 
+    county_2014[county_2014.subsector.apply(lambda x: x in [31, 32, 33])],
         copy=True
         )
 
-# Some MECS regions are missing
+# Some MECS regions (census regions) are missing
 fips_mecs = pd.read_csv(fips_mecs_file, index_col='COUNTY_FIPS',
                         usecols=['COUNTY_FIPS', 'MECS_Region'])
 
@@ -206,7 +201,7 @@ def align_naics(mecs_2014, county_2014):
     for n in range(3, 7):
         county_2014.loc[:, 'N' + str(n)] = \
             county_2014.naics.apply(lambda x: int(str(x)[0:n]))
-        
+
         county_merged = pd.merge(
             county_2014, mecs_naics[mecs_naics.Nn == n], how='inner',
             left_on='N' + str(n), right_on='naics'
@@ -235,7 +230,7 @@ def align_naics(mecs_2014, county_2014):
 
     county_nformatted.drop(['N3', 'N4', 'N5', 'N6'], axis=1, inplace=True)
 
-    county_nformatted.replace({'Midwest': 'Midwest Census Region', 
+    county_nformatted.replace({'Midwest': 'Midwest Census Region',
         'West': 'West Census Region', 'South': 'South Census Region',
         'Northeast': 'Northeast Census Region', np.nan: 'Total United States'},
         inplace=True)
@@ -248,12 +243,23 @@ def align_naics(mecs_2014, county_2014):
 
 county_nformatted = align_naics(mecs_2014, county_2014)
 
+mecs_2014.sort_index(inplace=True)
 # Calculated absolute and relative differences between IET-estimated energy and
 # MECS energy.
-# NaN values represent instances where MECS values == *, W, H.
 county_abs_diff = county_nformatted.subtract(mecs_2014)
 
-county_perc_diff = county_abs_diff.divide(mecs_2014)
+# Then mask (== np.nan) where MECS 2014 == np.nan and county_nformatted >0.
+# So, np.nan values represent NAICS, fuel types, and census regions where
+# IET estimates an energy value >0 and MECS withholds a value.
+county_abs_diff = county_abs_diff.mask(
+    county_nformatted == 0, county_nformatted
+    )
+
+# Calcualte percent difference and mask where IET > 0 and MECS is withheld.
+# Values of np.inf represent where IET > 0 and MECS == 0
+county_perc_diff = county_abs_diff.divide(mecs_2014).mask(
+    county_nformatted == 0, 0
+    )
 
 # Comparing at 6-digit NAICS level only
 def n_NAICS_select(df, n):
@@ -262,9 +268,9 @@ def n_NAICS_select(df, n):
         )])
 
     county_nD.set_index(['Region', 'NAICS'], inplace=True, drop=True)
-    
+
     return county_nD
-    
+
 county_abs_6D = n_NAICS_select(county_abs_diff, 6)
 
 county_perc_6D = n_NAICS_select(county_perc_diff, 6)
@@ -281,12 +287,12 @@ def draw_econ_pcolor_plots(df, comp_type, save_dir):
     # visualization of relative values.
 #    if comp_type == '%':
 #        plot_df.replace(to_replace={np.inf: 2}, inplace=True)
-#        plot_df[plot_df > 2] = 2    
+#        plot_df[plot_df > 2] = 2
 
     for r in ['Per_employee', 'Per_value_add', 'Per_value_shipments']:
-            
+
         naics_ticks = plot_df[r].index.levels[0].values
-        
+
         pivot_df = plot_df[r].reset_index().pivot(
             index='Economic_characteristic', columns='NAICS'
             )
@@ -323,5 +329,3 @@ def draw_econ_pcolor_plots(df, comp_type, save_dir):
         fig.savefig(
             save_dir + comp_type + '_' + r + '.pdf', bbox_inches='tight'
             )
-
-    
