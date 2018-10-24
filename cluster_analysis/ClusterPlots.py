@@ -35,7 +35,7 @@ def elbow_plot(avgWithinSS, K, title):
     fig.tight_layout()
 
     fig.savefig('Elbow_KMeans_'+ title + '.png', dpi=100)
-    
+
 
 def socio_bxplt(clustered_counties, save_file_name):
     """
@@ -44,7 +44,7 @@ def socio_bxplt(clustered_counties, save_file_name):
     """
 
     ncolors = ['#e66101', '#fdb863', '#b2abd2', '#5e3c99']
-    
+
     eucolors = ['#ece2f0', '#a6bddb', '#1c9099']
 
     if type(clustered_counties) == pd.core.frame.DataFrame:
@@ -52,17 +52,17 @@ def socio_bxplt(clustered_counties, save_file_name):
         grouped_data = clustered_counties.groupby('cluster')
 
         if 'Facility HVAC' in clustered_counties.columns:
-        
+
             ccolors = eucolors
 
         else:
-            
+
             ccolors = ncolors
 
     else:
 
         grouped_data = clustered_counties
-        
+
         ccolors = ncolors
 
     with sns.axes_style('whitegrid'):
@@ -70,16 +70,16 @@ def socio_bxplt(clustered_counties, save_file_name):
         fig, axs = plt.subplots(2, 2, sharex=True, figsize=(8, 6))
 
         bplt1 = axs[0, 0].boxplot(
-            [grouped_data.TotalEnergy.get_group(g).dropna() 
-                for g in grouped_data.groups], patch_artist=True
+            [grouped_data.TotalEnergy.get_group(g).dropna().divide(1.05505585)
+                for g in grouped_data.groups], patch_artist=True, sym='+'
             )
-        axs[0, 0].set_title('Total Energy (TBtu)')
+        axs[0, 0].set_title('Total Energy (PJ)')
 
         axs[0, 0].set_yscale('log')
 
         bplt2 = axs[0, 1].boxplot(
             [grouped_data['HUD_median_lowmed'].get_group(g).dropna()*100
-                for g in grouped_data.groups], patch_artist=True
+                for g in grouped_data.groups], patch_artist=True, sym='+'
             )
         axs[0, 1].set_title('Poverty %, Total Population')
 
@@ -87,22 +87,22 @@ def socio_bxplt(clustered_counties, save_file_name):
 
         bplt3 = axs[1, 0].boxplot(
             [grouped_data.Med_income.get_group(g).dropna()
-                for g in grouped_data.groups], patch_artist=True
+                for g in grouped_data.groups], patch_artist=True, sym='+'
             )
         axs[1, 0].set_title('Median Household Income ($)')
-        
+
         axs[1, 0].set_xlabel('Cluster')
-    
+
         bplt4 = axs[1, 1].boxplot(
             [grouped_data['Ind_emp_%'].get_group(g).dropna()*100
-                for g in grouped_data.groups], patch_artist=True
+                for g in grouped_data.groups], patch_artist=True, sym='+'
             )
         axs[1, 1].set_title('Industry % of Total Employment')
 
         axs[1, 1].set_ylim(0, 100)
-        
+
         axs[1, 1].set_xlabel('Cluster')
-        
+
         for bplot in (bplt1, bplt2, bplt3, bplt4):
             for patch, color in zip(bplot['boxes'], ccolors):
                 patch.set_facecolor(color)
@@ -112,7 +112,7 @@ def socio_bxplt(clustered_counties, save_file_name):
         fig.tight_layout()
 
         fig.savefig(save_file_name + '_SocioEcon_BxPlt.png', dpi=100)
-        
+
         plt.close()
 
 
@@ -132,21 +132,21 @@ def enduse_bxplt(id_eu, save_file_name):
     else:
         pass
 
-    with sns.axes_style('whitegrid'):    
+    with sns.axes_style('whitegrid'):
 
         fig, axs = plt.subplots(2, 2, sharex=True, figsize=(8, 6), sharey=True)
 
         eubplt1 = axs[0, 0].boxplot(
             [id_eu_grouped[
                 'CHP and/or Cogeneration Process'
-                ].get_group(g).dropna() for g in id_eu_grouped.groups],
+                ].get_group(g).dropna().divide(1.05505585) for g in id_eu_grouped.groups],
             patch_artist=True)
 
         axs[0, 0].set_title('CHP/Cogen')
-        
+
         axs[0, 0].set_ylim(0, 8)
-        
-        axs[0, 0].set_ylabel('Energy (TBtu)')
+
+        axs[0, 0].set_ylabel('Energy (PJ)')
 
         eubplt2 = axs[0, 1].boxplot(
             [id_eu_grouped[
@@ -158,13 +158,13 @@ def enduse_bxplt(id_eu, save_file_name):
         axs[0, 1].set_title('Conventional Boiler')
 
         eubplt3 = axs[1, 0].boxplot(
-            [id_eu_grouped['Machine Drive'].get_group(g).dropna() for g in
+            [id_eu_grouped['Machine Drive'].get_group(g).dropna().divide(1.05505585) for g in
             id_eu_grouped.groups], patch_artist=True
             )
 
         axs[1, 0].set_title('Machine Drive')
 
-        axs[1, 0].set_ylabel('Energy (TBtu)')
+        axs[1, 0].set_ylabel('Energy (PJ)')
 
         axs[1, 0].set_xlabel('Cluster')
 
@@ -174,7 +174,7 @@ def enduse_bxplt(id_eu, save_file_name):
             )
 
         axs[1, 1].set_title('Process Heating')
-        
+
         axs[1, 1].set_xlabel('Cluster')
 
         for bplot in (eubplt1, eubplt2, eubplt3):
@@ -186,7 +186,7 @@ def enduse_bxplt(id_eu, save_file_name):
         fig.tight_layout()
 
         fig.savefig(save_file_name + 'EndUse_BxPlt.png', dpi=100)
-        
+
         plt.close()
 
 
@@ -195,22 +195,22 @@ def RUCC_hist(clustered_counties, file_name):
     Plot histograms of USDA Rural-Urban Continuum Codes (RUCC) for clustered
     counties.
     """
-    
+
 
     if 'Facility HVAC' in clustered_counties.columns:
-        
+
         grouped_data = clustered_counties.groupby('cluster')
-        
+
         colors = ['#ece2f0', '#a6bddb', '#1c9099']
 
     else:
 
         grouped_data = clustered_counties.groupby('cluster')
-        
+
         colors = ['#e66101','#fdb863','#b2abd2','#5e3c99']
 
     with sns.axes_style('whitegrid'):
-        
+
         fig, axs = plt.subplots(2, 2, sharex=True, sharey=True, figsize=(8, 8))
 
         axs[0, 0].hist(grouped_data.RUCC_2013.get_group(0), color=colors[0])
@@ -226,18 +226,18 @@ def RUCC_hist(clustered_counties, file_name):
         axs[1, 0].hist(grouped_data.RUCC_2013.get_group(2), color=colors[2])
 
         axs[1, 0].set_title('Cluster 3')
-        
+
         axs[1, 0].set_ylabel('Number of Counties')
-        
+
         axs[1, 0].set_xlabel('USDA RUCC')
 
         if grouped_data.ngroups == 4:
 
             axs[1, 1].hist(grouped_data.RUCC_2013.get_group(3),
                             color=colors[3])
-    
-            axs[1, 1].set_title('Cluster 4')    
-    
+
+            axs[1, 1].set_title('Cluster 4')
+
             axs[1, 1].set_xlabel('USDA RUCC')
 
         else:
@@ -248,7 +248,7 @@ def RUCC_hist(clustered_counties, file_name):
         fig.tight_layout()
 
         fig.savefig(file_name + '_RUCC_hist.png', dpi=100)
-        
+
         plt.close()
 
 
@@ -265,7 +265,7 @@ def FTmix_cluster_bxplt(id_energy_df, energy_FT, title):
         )
 
     FTmix.loc[:, 'cluster'] = FTmix.cluster.apply(lambda x: int(x + 1))
-    
+
     FTmix.drop(['fips_matching', 'Total'], axis=1, inplace=True)
 
     FTmix = pd.melt(
@@ -291,66 +291,66 @@ def FTmix_cluster_bxplt(id_energy_df, energy_FT, title):
     fig.savefig(
         'FuelFrac_bxplt_' + title + '.png', bbox_inches='tight', dpi=200
         )
-    
+
 def Ind_cluster_bxplt(id_energy_df, energy_FT, title):
     """
-    Draw sector boxplots and scatter plots by cluster 
+    Draw sector boxplots and scatter plots by cluster
     from indicated KMeans cluster IDs
     """
 
     ncolors=['#e66101','#fdb863','#b2abd2','#5e3c99']
-             
+
     # melt data
 
     melted = pd.melt(id_energy_df.reset_index().iloc[:, 0:439],
                      id_vars=['cluster', 'index'], var_name='NAICS')
-    
+
     melted.rename(columns={'index': 'fips_matching'}, inplace=True)
-    
+
     naics_match = pd.DataFrame(melted.NAICS.drop_duplicates())
-    
+
     naics_match.loc[:, 'N2'] = \
         naics_match.NAICS.apply(lambda x: int(str(x)[0:2]))
-        
+
     naics_match.replace({'N2': {31: '31-33', 32: '31-33', 33: '31-33'}},
                         inplace=True)
-        
+
     naics_match.loc[:, 'N3'] = \
         naics_match.NAICS.apply(lambda x: int(str(x)[0:3]))
-        
+
     melted = pd.merge(melted, naics_match, how='inner', on=['NAICS'])
-    
+
     fraction = melted.groupby(['fips_matching', 'N2']).value.sum().divide(
             melted.groupby('fips_matching').value.sum(), level=0
             ).reset_index()
-    
+
     fraction = pd.merge(fraction, melted[['fips_matching', 'cluster']],
                         on=['fips_matching'], how='inner').drop_duplicates()
-    
+
     fraction.loc[:, 'cluster'] = fraction.cluster.apply(lambda x: int(x + 1))
 
     sns.set_style('whitegrid')
-    
+
     fig, ax = plt.subplots(figsize=(8, 6), dpi=400)
 
     sns.boxplot(data=fraction, x='N2', y='value', hue='cluster',
                 palette=ncolors, fliersize=1)
-    
+
 #    sns.swarmplot(data=fraction, x='N2', y='value', hue='cluster'
 #                  size=0.8, color=".3", linewidth=0, dodge=True)
-    
+
     sns.stripplot(data=fraction, x='N2', y='value', hue='cluster',
                   color=".3", size=1, jitter=True, dodge=True)
 
     ax.set_xlabel('Industry Sector')
-    
+
     ax.set_xticklabels(['Agriculture', 'Mining', 'Construction',
                    'Manufacturing'])
-            
+
     vals = ax.get_yticks()
-    
+
     ax.set_yticklabels(['{0:,.0%}'.format(x) for x in vals])
-    
+
     ax.set_ylabel('Fraction County Energy (%)')
 
     plt.show()
@@ -383,15 +383,15 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
          pltdata.loc[pltdata.groupby('len_N').get_group(4).index, 'NAICS']*100
 
     pltdata.loc[pltdata.groupby('len_N').get_group(5).index, 'NAICS'] =\
-         pltdata.loc[pltdata.groupby('len_N').get_group(5).index, 'NAICS']*10     
+         pltdata.loc[pltdata.groupby('len_N').get_group(5).index, 'NAICS']*10
 
     if mfg_only == True:
-        
+
         pltdata.loc[:, 'ticks'] = \
             pltdata['NAICS'].apply(lambda x: float(str(x)[0:3]))
-            
+
     else:
-        
+
         pltdata.loc[:, 'ticks'] = \
             pltdata['NAICS'].apply(lambda x: float(str(x)[0:2]))
 
@@ -404,7 +404,7 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
     pltdata.loc[tick_index, 'ticks'] = pltdata.loc[tick_index, 'NAICS']
 
     #pltdata.ticks.fillna(0, inplace=True)
-    
+
     pltdata.set_index('NAICS', inplace=True)
 
     #pltdata.loc[:, 'ticks'] = pltdata.ticks.astype('int')
@@ -420,7 +420,7 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
         if mfg_only is True:
 
             pltdata = pd.DataFrame(pltdata[pltdata.index > 311000], copy=True)
-            
+
             ylabmfg = ' _Mfgonly'
 
         else:
@@ -442,12 +442,12 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
                 ylab = 'Cumulative Energy (TBtu)' + ylabmfg
 
             if absv == False:
- 
+
                 curve_y =\
                     pltdata[y].divide(
                         pltdata[y].sum()
                         ).cumsum().values*100
-                    
+
                 ylab = 'Cumulative Energy (%)' + ylabmfg
 
             ax.plot(
@@ -469,7 +469,7 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
                    )
 
         if mfg_only == True:
-            
+
             ax.set_xticklabels(
                 [str(x)[0:3] for x in pltdata[pltdata.ticks>0].ticks],
                 rotation='vertical', size=10
@@ -481,78 +481,81 @@ def Cluster_IndDist(indmix_sum, mfg_only=False, absv=True):
             )
 
         plt.close()
-    
+
 def cluster_pieplt(final_cluster_naics_desc):
     """
-    Create pie charts for each of the clusters that depict the contribution of 
+    Create pie charts for each of the clusters that depict the contribution of
     energy by NAICS to county energy total.
     """
-    
+
     data = final_cluster_naics_desc.iloc[:, 0:439].copy()
-    
+
     data = pd.pivot_table(data, index='cluster', aggfunc=np.sum)
-    
+
     data = pd.melt(data.reset_index(), id_vars='cluster', var_name='naics')
-    
+
     data.loc[:, 'naics_2'] = data.naics.apply(lambda x: int(str(x)[0:2]))
-    
-    data.replace({'naics_2': {31: '31-33', 32: '31-33', 33: '31-33'}}, 
+
+    data.replace({'naics_2': {31: '31-33', 32: '31-33', 33: '31-33'}},
                  inplace=True)
-    
+
     data.loc[:, 'cluster'] = data.cluster.add(1)
-    
+
     # Sequential colormaps for each 2-digit naics category
     cmaps = {'31-33': 'Greys_r', 23: 'Purples_r', 11: 'Blues_r',
              21: 'Oranges_r'}
-    
+
     colors = []
-    
+
     labels = pd.concat([data[data.cluster == 1].naics_2,
                         data.naics_2.drop_duplicates()], axis=1)
-    
+
     labels = labels.iloc[:, 1]
-    
+
     labels.replace({11: 'Agriculture', 21: 'Mining', 23: 'Construction',
                     '31-33': 'Manufacturing', np.nan: ""}, inplace=True)
-    
+
     # Adjust the location of 'Manufacturing' label
     labels.iloc[74] = ""
-    
+
     labels.iloc[256] = 'Manufacturing'
-    
+
     for n in data.naics_2.drop_duplicates():
 
         # Divide by 4 because there are 4 clusters
         len_n = int(len(data[data.naics_2 == n])/4)
-    
+
         [colors.append(plt.get_cmap(cmaps[n])(i)) for i in np.linspace(0, 1, len_n)]
 
     fig = plt.figure(figsize=(8, 8))
-    
+
     pie_grid = GridSpec(2, 2)
-    
+
     plt.subplot(pie_grid[0, 0], aspect=1, title='Cluster 1')
-    
+
     plt.pie(data[data.cluster == 1].value, colors=colors, labels=labels)
-    
+
     plt.subplot(pie_grid[0, 1], aspect=1, title='Cluster 2')
-    
+
     plt.pie(data[data.cluster == 2].value, colors=colors, labels=labels)
-    
+
     plt.subplot(pie_grid[1, 0], aspect=1, title='Cluster 3')
-    
+
     plt.pie(data[data.cluster == 3].value, colors=colors, labels=labels)
-    
+
     plt.subplot(pie_grid[1, 1], aspect=1, title='Cluster 4')
-    
+
     plt.pie(data[data.cluster == 4].value, colors=colors, labels=labels)
-    
+
     plt.tight_layout()
-    
+
     plt.savefig('cluster_pie.png', dpi=300, bbox_inches='tight')
 
 
-    
+
+
+
+
 def IntensityBxplt(final_cluster_naics, county_energy, county_ind_emp):
     """
     Normalize county total energy use by county total industry employment
@@ -563,6 +566,9 @@ def IntensityBxplt(final_cluster_naics, county_energy, county_ind_emp):
     df = pd.DataFrame(county_energy, copy=True,
                       columns=['fips_matching', 'Total'])
 
+    # Convert from TBtu to PJ
+    df.loc[:, 'Total'] = df.Total.divide(1.05505585)
+
     df.rename(columns={'Total': 'Intensity'}, inplace=True)
 
     df = df.groupby(['fips_matching']).sum()
@@ -571,7 +577,7 @@ def IntensityBxplt(final_cluster_naics, county_energy, county_ind_emp):
         county_ind_emp['non_ag'].sum(level=0)
         )
 
-    # Normalize by number of employees by NAICS    
+    # Normalize by number of employees by NAICS
     df = df.divide(emp_counts, axis='index') * 1000000
 
     df = pd.concat([df, final_cluster_naics.set_index('fips_matching')],
@@ -581,7 +587,7 @@ def IntensityBxplt(final_cluster_naics, county_energy, county_ind_emp):
 
     ncolors=['#e66101','#fdb863','#b2abd2','#5e3c99']
 
-    with sns.axes_style('whitegrid'):    
+    with sns.axes_style('whitegrid'):
 
         fig = plt.figure(1, figsize=(8,8), tight_layout=True)
 
@@ -596,7 +602,7 @@ def IntensityBxplt(final_cluster_naics, county_energy, county_ind_emp):
 
         ax.set_title('County Energy Intensity')
 
-        ax.set_ylabel('MMBtu per Industrial Employee')
+        ax.set_ylabel('GJ per Industrial Employee')
 
         ax.set_yscale('log')
 

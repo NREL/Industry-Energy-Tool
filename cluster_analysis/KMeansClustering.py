@@ -348,12 +348,6 @@ for n in [0, 1]:
 fig.savefig("Var_explained.png", size=(8, 6), dpi=200)
 
 
-#%%
-# Calculate silhouette score
-# ?
-
-
-
 # %%    
 # K-means for sectors
 for s in [11, 21, 23, '31-33']:
@@ -607,6 +601,7 @@ final_cluster_eu_desc = describe_clusters(final_kmeans_cluster_EU,
 # County count by cluster
 for df in [final_kmeans_cluster_NAICS, final_kmeans_cluster_EU]:
     print(df.groupby('cluster').count())
+
 # %%
 # Plot boxplots of final cluster assignments
 ClusterPlots.socio_bxplt(final_cluster_naics_desc, 'NAICS')
