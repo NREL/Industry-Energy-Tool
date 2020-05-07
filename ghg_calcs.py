@@ -8,7 +8,7 @@ revised by cmcmilla
 
 import pandas as pd
 import numpy as np
-import itertools as itools
+import itertools
 import re
 
 class GHGs(object):
@@ -17,12 +17,12 @@ class GHGs(object):
     and GHG emissions for a single year.
     """
 
-    data_wd = 'Y:\\6A20\\Public\\ICET\\Data for calculations\\GHGs\\'
+    data_wd = './data_for_calculations/ghgs/'
 
     emission_factor_file = data_wd + 'Emission factors.xlsx'
 
     fips_to_zip_file = data_wd + 'COUNTY_ZIP_032014.xlsx'
-    
+
     zip_to_census_region_file = data_wd + 'zip_census_region.csv'
 
     e_grid_file = data_wd + 'power_profiler_zipcode_tool_2014_v7.1_1.xlsx'
@@ -48,7 +48,7 @@ class GHGs(object):
 
     zip_census_region_dict = \
         dict(pd.read_csv(zip_to_census_region_file).values)
-    
+
     county_population_dict = dict(
         pd.read_csv(county_population_file,
                     usecols=['FIPS', 'Population Estimate 2014']).values
@@ -74,12 +74,12 @@ class GHGs(object):
 
         nems_egrid_regions = pd.read_csv(cls.data_wd + 'nems_egrid_regions.csv')
 
-        aeo_emm = pd.read_excel(cls.aeo_electricity_supply_file, 
+        aeo_emm = pd.read_excel(cls.aeo_electricity_supply_file,
                                 sheetname='sup_elec.1208a',
                                 index_col=False)
 
-        agg_regions = ['Northeast Power Coordinating Council /', 
-                'Western Electricity Coordinating Council /']
+        agg_regions = ['Northeast Power Coordinating Council /',
+                       'Western Electricity Coordinating Council /']
 
         def find_nems_region(text):
 
@@ -153,7 +153,7 @@ class GHGs(object):
                 data_name = 'CO2eq_kg_perTBtu'
 
             df = pd.DataFrame({'value': aeo_emm_grpd.get_group((reg, data_column)).sum()[1:-1].divide(
-                aeo_emm_grpd.get_group((reg, 'Total Electricity Generation')).sum()[1:-1], 
+                aeo_emm_grpd.get_group((reg, 'Total Electricity Generation')).sum()[1:-1],
                 fill_value=0
                 )})
 
@@ -219,11 +219,11 @@ class GHGs(object):
 
                 if re_ef == 'RE':
 
-                    new_values = data[(data.data == 'RE_perc')].copy()  
+                    new_values = data[(data.data == 'RE_perc')].copy()
 
                 if re_ef == 'ef':
 
-                    new_values = data[(data.data == 'CO2eq_kg_perTBtu')].copy()   
+                    new_values = data[(data.data == 'CO2eq_kg_perTBtu')].copy()
 
                 new_values.reset_index(inplace=True)
 
@@ -299,7 +299,7 @@ class GHGs(object):
         match_col_sr = 'Subregion'
 
         ef_mr = pd.read_excel(cls.e_grid_file, sheetname='Data Entry',
-                            skiprows=[0, 1], 
+                            skiprows=[0, 1],
                             parse_cols="B,T:V" )
 
         ef_mr.columns = ['Zip', 'SRCO2RTA', 'SRCH4RTA', 'SRN2ORTA']
@@ -307,10 +307,10 @@ class GHGs(object):
         match_col_mr = 'Zip'
 
         for df in [ef_sr, ef_mr]:
- 
+
             df.loc[:, 'CO2eq_kg_perTBtu'] = \
                     pd.Series((df.SRCO2RTA + df.SRCH4RTA * 25 +
-                                df.SRN2ORTA * 298) * 
+                                df.SRN2ORTA * 298) *
                                 (0.453592 / 3.412 * 10**6))
 
         ef_mr_dict = dict(zip(ef_mr.iloc[:, 0], ef_mr['CO2eq_kg_perTBtu']))
@@ -363,9 +363,9 @@ class GHGs(object):
 
         def ak_hi_RE(df, increase, region):
             """
-            Calculates change in electricity emission factors (efs) for AK and 
+            Calculates change in electricity emission factors (efs) for AK and
             HI. Assumes decrease in efs is proportional to increase in RE.
-            Note no projected efs from AEO; projections instead based on 
+            Note no projected efs from AEO; projections instead based on
             eGRID values for 2014.
             """
 
@@ -421,7 +421,7 @@ class GHGs(object):
 
                 df.update(ann_decrease)
 
-                return df               
+                return df
 
             else:
 
@@ -477,7 +477,7 @@ class GHGs(object):
         Output is a dictionary summarizing emissions on various geographic
         scales.
         """
-        
+
         if type(county_enduse.index) == pd.indexes.multi.MultiIndex:
             county_enduse.reset_index(inplace=True)
 
@@ -591,10 +591,10 @@ class GHGs(object):
                       'Other']
 
         if type(energy_proj) == dict:
-            
+
             proj_emissions = \
                 pd.DataFrame(index=energy_proj['Total_energy_use'].index)
-                
+
         else:
 
             proj_emissions = pd.DataFrame(index=energy_proj.index)
@@ -606,7 +606,7 @@ class GHGs(object):
                 axis=1
                 )
 
-            elect_ef.columns.values[-1] = 'region' 
+            elect_ef.columns.values[-1] = 'region'
 
             elect_ef = \
                 elect_ef.dropna().drop('Zip', axis=1).groupby('region').mean()
@@ -626,16 +626,16 @@ class GHGs(object):
                 ).mean()
 
             if type(energy_proj) == dict:
-                
+
                 elect_ef = pd.merge(pd.DataFrame(
                     energy_proj['Total_energy_use'].index.get_level_values(
                         'fips_matching'
                         ).drop_duplicates()
                     ), f_z_df.reset_index(), on='fips_matching', how='left')
 
-                
+
             else:
-                
+
                 elect_ef = pd.merge(pd.DataFrame(
                     energy_proj.index.get_level_values(
                         'fips_matching'
@@ -676,9 +676,9 @@ class GHGs(object):
                             level='fips_matching').dropna(axis=1, how='all')],
                          axis=1)
 
-            # need to unpack this to rename columns correctly   
+            # need to unpack this to rename columns correctly
             ft_cols.append(
-                list((itools.product([ft], energy_proj[ft].columns)))
+                list((itertools.product([ft], energy_proj[ft].columns)))
                 )
 
             # proj_emissions.rename(columns={ft: ft + '_emissions'},
