@@ -17,5 +17,7 @@ The IET assumes a baseline energy efficiency improvement for pre- and post-2014 
 ## Fuel Switching
 The IET assumes linear adoption of new equipment for fuel switching by 2050. Currently only switching from combustion fuels to electricity (i.e., electrification) is caputured. Users have the ability to specifiy fuel switching by industry, end use, and/or temperature range.  
 
-## Material Efficiency
+## Material Efficiency / Circular Economy
 Although it is not currently integrated with the IET, a hybrid IO model (i.e., energy units for energy industry transactions and monetary units for transactions of all remaining industries) was developed to estimate the direct and indirect energy requirements of the U.S. economy. A RAS implementation is included for dynamic rebalancing. Ideally, this module will be populated with energy projections from the IET and expanded to include additional hybrid models for materials to allow exploration of the energy implications of energy efficiency and material efficiency strategies. See [McMillan (2018)](https://www.nrel.gov/docs/fy18osti/70609.pdf) for a discussion of the analysis intent.  
+
+A new model, the [Hybrid Supply and Use Table (HSUT) Model](./HSUT_model/) has been developed as foundation to conduct input-output analysis. See the model's directory for more background and instruction on its use.
