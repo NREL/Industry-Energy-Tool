@@ -1,0 +1,18 @@
+# Procedure: Excel Files Needed
+
+|     Data Category               |     Filename                                                |     Description                                                                                           |     Source             |
+|---------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|------------------------|
+|     Trade data: imports         |     Imports_2012_Comtrade_HS_6dig.xlsx                      |     2012 import data, HS 6 digit, US to world                                                             |     Comtrade (WITS)    |
+|     Trade data: imports         |     US_Imports_HS.xlsx                                      |     Import data years 2010 – 2019, US to world, compiled into   single workbook                           |     Comtrade (WITS)    |
+|     Trade data: exports         |     US2012Exporttoworld_HS_Codes.xlsx                       |     2012 export data, HS 6 digit, US to world                                                             |     Comtrade (WITS)    |
+|     Trade data: exports         |     US_Exports_HS.xlsx                                      |     Export data years 2010 – 2019, US to world, compiled into   single workbook                           |     Comtrade (WITS)    |
+|     Concordance: HS to NAICS    |     imp-code.xlsx                                           |     Concordance between 2012 10-digit HS code and NAICS                                                   |     Census             |
+|     Concordance: NAICS BEA      |     BEA_NAICS_2012.xlsx                                     |     Liz Wachs compiled from BEA IO concordance                                                            |     BEA/NREL           |
+|     Production Data             |     Production_Data.xlsx                                    |     Liz Wachs compiled from USGS, EIA, BGS data                                                           |     USGS, EIA, BGS     |
+|     Gross Output by Industry    |     Gross_Output_by_Industry_Detail_2010-2019.xls           |     GDP by Industry table (real $), 2010-2019                                                             |     BEA                |
+|     Use Table                   |     IOUse_After_Redefinitions_PRO_1997-2019_Summary.xlsx    |     Summary level use tables, producer prices, after   redefinitions, 1997-2019                           |     BEA                |
+|     Use Table                   |     IOUse_After_Redefinitions_PRO_DET.xlsx                  |     Detail level use table, after redefinitions, producer   prices                                        |     BEA                |
+|     Make Table                  |     IOMake_After_Redefinitions_1997-2019_Summary.xlsx       |     Summary level make tables, producer prices, after   redefinitions, 1997-2019                          |     BEA                |
+|     Make Table                  |     IOMake_After_Redefinitions_DET.xlsx                     |     Detail level make table, after redefinitions                                                          |     BEA                |
+|     IO Table                    |     CxC_TR_2007_2012_PRO_DET.xlsx                           |     Detailed total requirements tables, 2007 and 2012,   producer prices                                  |     BEA                |
+|     IO Table                    |     SIOT_BEA2012AR_CxC.xlsx                                 |     Direct requirement matrix, commodity by commodity, after   redefinitions, prepared by A.F. at NREL    |     NREL               |
